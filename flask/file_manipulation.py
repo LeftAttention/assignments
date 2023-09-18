@@ -4,7 +4,7 @@ from collections import Counter
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Count the occurrences of each word in a text file.')
-    parser.add_argument('--file_path', help='Path to the text file')
+    parser.add_argument('--file_path', help='Path to the text file', default="sample_files_001.txt")
 
     return parser.parse_args()
 
