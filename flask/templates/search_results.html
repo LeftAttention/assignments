@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS or your stylesheet link -->
+    <!-- <link href="path/to/your/stylesheet.css" rel="stylesheet"> -->
+
+    <title>Search Results</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results</h1>
+        <!-- Add a form here for new search -->
+        <form action="/search" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" name="query" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <hr>
+        <!-- Display search results -->
+        <div class="row">
+            {% if products %}
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{{ product['image_url'] }}" class="card-img-top" alt="{{ product['name'] }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product['name'] }}</h5>
+                                <p class="card-text">{{ product['description'] }}</p>
+                                <p class="card-text"><strong>${{ product['price'] }}</strong></p>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>No products found for the search query.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS or your JS files -->
+    <!-- <script src="path/to/your/script.js"></script> -->
+</body>
+</html>
