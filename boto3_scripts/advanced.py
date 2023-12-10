@@ -21,8 +21,20 @@ class EC2Manager:
         )[0]
         self.instance.wait_until_running()
         self.instance.load()
+        self.update_security_group(self.instance.security_groups[0]['GroupId'])
         print(f"Instance created with ID: {self.instance.id}")
         return self.instance.id
+
+    def update_security_group(self, group_id):
+        security_group = self.ec2.SecurityGroup(group_id)
+        security_group.authorize_ingress(
+            IpPermissions=[
+                {'IpProtocol': 'tcp', 'FromPort': 22, 'ToPort': 22, 'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
+                {'IpProtocol': 'tcp', 'FromPort': 80, 'ToPort': 80, 'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
+                {'IpProtocol': 'tcp', 'FromPort': 443, 'ToPort': 443, 'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
+            ]
+        )
+        print(f"Security Group {group_id} updated to allow ports 22, 80, 443")
 
     def stop_instance(self):
         self.instance.stop()
