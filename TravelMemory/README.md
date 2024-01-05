@@ -1,5 +1,10 @@
 # Deployment Documentation for MERN Architecture
 
+## Overall Architecture
+
+![Architecture](docs/e2e.png)
+
+
 ## Step 1: Setting up AWS EC2 Instances
 
 1. **Objective**: Create two EC2 instances on AWS, one for the frontend and one for the backend.
