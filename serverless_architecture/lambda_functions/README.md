@@ -31,7 +31,7 @@ assignment_01.py
 1. **Initialize Boto3 RDS Client**: Establishes a connection with AWS RDS service.
 2. **Take Snapshot**: Creates a snapshot of the specified RDS instance.
 
-**Setting Up CloudWatch Event Rule**:
+### Setting Up CloudWatch Event Rule:
 
 
 #### Step 1: Creating a New Rule
@@ -84,3 +84,54 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
 1. **Initialize Boto3 S3 Client**: Establishes a connection with AWS S3 service.
 2. **List All S3 Buckets**: Retrieves a list of all S3 buckets in your AWS account.
 3. **Detect Unencrypted Buckets**: Checks each bucket for server-side encryption configuration.
+
+
+## [5. Automatic EBS Snapshot and Cleanup Using AWS Lambda and Boto3](assignment_05.py)
+
+**Objective**: Automate the creation of snapshots for specified EBS volumes and clean up snapshots older than 30 days.
+
+**Script Functionality**:
+1. **Initialize Boto3 EC2 Client**: Establishes a connection with AWS EC2 service.
+2. **Create Snapshot**: Generates a snapshot of the specified EBS volume.
+3. **List and Delete Old Snapshots**: Identifies and deletes snapshots older than 30 days.
+
+### Setting Up CloudWatch Event Rule:
+
+#### Step 1: Creating a New Rule
+
+1. **Open the Rules Page**: In the CloudWatch dashboard, click on "Rules" under the "Events" section in the left sidebar.
+
+2. **Create a New Rule**: Click on the “Create rule” button, usually located at the top right of the page.
+
+#### Step 2: Configuring the Event Source
+
+1. **Select Event Source**: Under the "Event Source" section, choose "Schedule". You can choose between a fixed rate or a cron expression.
+   - **Fixed Rate**: Allows you to set a simple frequency, like every 7 days.
+   - **Cron Expression**: For more complex schedules. For a weekly trigger, you might use an expression like `0 0 * * SUN`, which triggers the function every Sunday at midnight UTC.
+
+2. **Enter the Schedule Details**: Based on your choice, input the fixed rate or cron expression.
+
+#### Step 3: Setting the Target
+
+1. **Choose Target**: Under the "Targets" section, click "Add target". Then select “Lambda function” as the target type.
+
+2. **Select Your Lambda Function**: From the drop-down, choose the Lambda function you created for the EBS snapshot and cleanup.
+
+3. **Configure Additional Settings**: If needed, configure additional settings like input constants or a dead-letter queue for handling failures.
+
+#### Step 4: Configuring the Rule
+
+1. **Name the Rule**: Provide a descriptive name for your rule. This helps in identifying the rule in the future.
+
+2. **Add a Description**: Optionally, you can add a description for more clarity on the rule’s purpose.
+
+3. **Set IAM Role**: AWS may prompt you to assign an IAM role that grants CloudWatch Events permission to invoke your Lambda function. You can choose an existing role or create a new one.
+
+4. **Enable the Rule**: Ensure that the state of the rule is set to "Enabled" to make it active immediately upon creation.
+
+#### Step 5: Review and Create
+
+1. **Review Your Configuration**: Double-check all the settings to ensure they match your intended schedule and target.
+
+2. **Create the Rule**: Click on the “Create” button to finalize the creation of the event rule.
+
