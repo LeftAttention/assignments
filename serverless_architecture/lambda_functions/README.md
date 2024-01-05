@@ -74,3 +74,13 @@ assignment_01.py
 
 Once this rule is created, it will automatically trigger our AWS Lambda function at the specified intervals, executing the task of creating an RDS snapshot.
 
+
+
+## [4.Monitor Unencrypted S3 Buckets Using AWS Lambda and Boto3](assignment_04.py)
+
+**Objective**: Automate the detection of S3 buckets that don't have server-side encryption enabled.
+
+**Script Functionality**:
+1. **Initialize Boto3 S3 Client**: Establishes a connection with AWS S3 service.
+2. **List All S3 Buckets**: Retrieves a list of all S3 buckets in your AWS account.
+3. **Detect Unencrypted Buckets**: Checks each bucket for server-side encryption configuration.
