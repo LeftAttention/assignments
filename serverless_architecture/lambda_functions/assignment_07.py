@@ -46,6 +46,3 @@ def lambda_handler(event, context):
             logger.info("SNS alert sent.")
 
     logger.info("Billing check completed.")
-
-if __name__ == "__main__":
-    lambda_handler(None, None)

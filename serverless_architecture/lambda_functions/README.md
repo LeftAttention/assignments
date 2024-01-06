@@ -193,3 +193,19 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
    - Provide a name and description.
    - Ensure the rule is enabled.
    - Click “Create”.
+
+
+## [8. DynamoDB Item Change Alert Using AWS Lambda, Boto3, and SNS](assignment_08.py)
+
+### Setting Up the DynamoDB Stream and Lambda Trigger
+
+1. **Enable DynamoDB Streams on Your Table**:
+   - Go to the DynamoDB console, select your table, and go to the “Streams” tab.
+   - Enable stream and select “New and old images” as the view type. This allows the Lambda function to see both the previous and updated state of the item.
+
+2. **Create a Lambda Function**
+
+3. **Set up the Lambda Trigger**:
+   - In the Lambda function’s configuration, add a trigger.
+   - Select DynamoDB as the source and choose the table you enabled the stream on.
+   - Ensure the event source is enabled.
