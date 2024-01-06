@@ -140,7 +140,7 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
 
 ### Setting Up CloudWatch Event Rule
 
-1. **Log in to AWS Management Console** and navigate to the **CloudWatch** service.
+1. Navigate to the **CloudWatch** service.
 
 2. In the CloudWatch dashboard, go to the **Rules** page under **Events**.
 
@@ -157,3 +157,39 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
 
 6. **Review and create** the rule.
 
+## [7. Monitor and Alert High AWS Billing Using AWS Lambda, Boto3, and SNS](assignment_07.py)
+
+### Step 1: SNS Setup
+
+1. Navigate to the **Simple Notification Service (SNS)** dashboard.
+
+2. **Create a New Topic**:
+   - Click on “Create topic”.
+   - Give it a name and a display name (e.g., `BillingAlerts`).
+   - Click “Create”.
+
+3. **Subscribe to the Topic**:
+   - Select the topic you just created.
+   - Click on “Create subscription”.
+   - Select “Email” as the protocol and enter your email address.
+   - Click “Create subscription”.
+   - You will receive an email to confirm the subscription. Make sure to confirm it.
+
+
+### Step 2: Event Source Setup
+
+1. **Navigate to CloudWatch**: Go to the CloudWatch service.
+
+2. **Create a New Rule**:
+   - Go to “Rules” under “Events”.
+   - Click “Create rule”.
+   - Choose “Schedule”.
+   - Set a fixed rate of 1 day or use a cron expression for daily execution.
+
+3. **Set Lambda as the Target**:
+   - In the “Targets” section, choose the Lambda function you created for this task.
+
+4. **Configure and Enable the Rule**:
+   - Provide a name and description.
+   - Ensure the rule is enabled.
+   - Click “Create”.
