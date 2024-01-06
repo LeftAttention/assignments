@@ -82,7 +82,7 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
 
 **Script Functionality**:
 1. **Initialize Boto3 S3 Client**: Establishes a connection with AWS S3 service.
-2. **List All S3 Buckets**: Retrieves a list of all S3 buckets in your AWS account.
+2. **List All S3 Buckets**: Retrieves a list of all S3 buckets in our AWS account.
 3. **Detect Unencrypted Buckets**: Checks each bucket for server-side encryption configuration.
 
 
@@ -105,33 +105,55 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
 
 #### Step 2: Configuring the Event Source
 
-1. **Select Event Source**: Under the "Event Source" section, choose "Schedule". You can choose between a fixed rate or a cron expression.
-   - **Fixed Rate**: Allows you to set a simple frequency, like every 7 days.
-   - **Cron Expression**: For more complex schedules. For a weekly trigger, you might use an expression like `0 0 * * SUN`, which triggers the function every Sunday at midnight UTC.
+1. **Select Event Source**: Under the "Event Source" section, choose "Schedule". We can choose between a fixed rate or a cron expression.
+   - **Fixed Rate**: Allows us to set a simple frequency, like every 7 days.
+   - **Cron Expression**: For more complex schedules. For a weekly trigger, we might use an expression like `0 0 * * SUN`, which triggers the function every Sunday at midnight UTC.
 
-2. **Enter the Schedule Details**: Based on your choice, input the fixed rate or cron expression.
+2. **Enter the Schedule Details**: Based on our choice, input the fixed rate or cron expression.
 
 #### Step 3: Setting the Target
 
 1. **Choose Target**: Under the "Targets" section, click "Add target". Then select “Lambda function” as the target type.
 
-2. **Select Your Lambda Function**: From the drop-down, choose the Lambda function you created for the EBS snapshot and cleanup.
+2. **Select Our Lambda Function**: From the drop-down, choose the Lambda function we created for the EBS snapshot and cleanup.
 
 3. **Configure Additional Settings**: If needed, configure additional settings like input constants or a dead-letter queue for handling failures.
 
 #### Step 4: Configuring the Rule
 
-1. **Name the Rule**: Provide a descriptive name for your rule. This helps in identifying the rule in the future.
+1. **Name the Rule**: Provide a descriptive name for our rule. This helps in identifying the rule in the future.
 
-2. **Add a Description**: Optionally, you can add a description for more clarity on the rule’s purpose.
+2. **Add a Description**: Optionally, we can add a description for more clarity on the rule’s purpose.
 
-3. **Set IAM Role**: AWS may prompt you to assign an IAM role that grants CloudWatch Events permission to invoke your Lambda function. You can choose an existing role or create a new one.
+3. **Set IAM Role**: AWS may prompt us to assign an IAM role that grants CloudWatch Events permission to invoke our Lambda function. We can choose an existing role or create a new one.
 
 4. **Enable the Rule**: Ensure that the state of the rule is set to "Enabled" to make it active immediately upon creation.
 
 #### Step 5: Review and Create
 
-1. **Review Your Configuration**: Double-check all the settings to ensure they match your intended schedule and target.
+1. **Review Our Configuration**: Double-check all the settings to ensure they match our intended schedule and target.
 
 2. **Create the Rule**: Click on the “Create” button to finalize the creation of the event rule.
+
+
+## [6. Auto-Tagging EC2 Instances](assignment_06.py)
+
+### Setting Up CloudWatch Event Rule
+
+1. **Log in to AWS Management Console** and navigate to the **CloudWatch** service.
+
+2. In the CloudWatch dashboard, go to the **Rules** page under **Events**.
+
+3. **Create a new rule**:
+   - For **Event Source**, select **Event Pattern**.
+   - Choose **EC2** as the service and **EC2 Instance State-change Notification** as the event type.
+   - Select **specific state(s)** and choose **running**. This triggers the function when instances are launched and reach the running state.
+
+4. In the **Targets** section, add your Lambda function.
+
+5. **Configure the details** of the rule:
+   - Provide a **name** and **description** for the rule.
+   - Ensure the rule is set to **Enabled**.
+
+6. **Review and create** the rule.
 
