@@ -225,3 +225,21 @@ Automate the archival of files older than 6 months from an S3 bucket to Amazon G
 1. **Trigger**:
    - Configure the Lambda function to run periodically (e.g., daily or weekly) using AWS EventBridge (formerly CloudWatch Events).
 
+## [11. Notify When ELB 5xx Errors Spike Using AWS Lambda, Boto3, and SNS](assignment_11.py)
+
+
+### Objective
+Automatically receive notifications when your Elastic Load Balancer (ELB) encounters an unusually high number of 5xx errors.
+
+### Setup and Deployment
+
+1. **Lambda Function**:
+
+2. **SNS Topic Setup**:
+   - Create an SNS topic and subscribe to it with your preferred method (e.g., email, SMS).
+   - Note the ARN of the SNS topic and use it in the script.
+
+3. **ELB Configuration**
+
+4. **Trigger**:
+   - Schedule the Lambda function to run every 5 minutes using AWS EventBridge.
