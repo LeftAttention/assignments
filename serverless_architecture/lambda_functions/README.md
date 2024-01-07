@@ -209,3 +209,11 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
    - In the Lambda function’s configuration, add a trigger.
    - Select DynamoDB as the source and choose the table you enabled the stream on.
    - Ensure the event source is enabled.
+
+## [9 Analyze Sentiment of User Reviews Using AWS Lambda, Boto3, and Amazon Comprehend](assignment_09.py)
+
+**EventBridge Setup**:
+- **Event Source**: Configure an event source that triggers the Lambda function. This could be based on a schedule or another AWS service event.
+- **Event Pattern**: If triggering based on a specific event, define an event pattern that includes the `user_review` data. For example, if the review is part of an S3 event or a custom application event, ensure the `user_review` field is included in the event pattern.
+- **Test Event**: For testing, you can create a sample event in the AWS Lambda console with a JSON structure like `{'user_review': 'Sample review text'}`.
+
