@@ -203,9 +203,7 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
    - Go to the DynamoDB console, select your table, and go to the “Streams” tab.
    - Enable stream and select “New and old images” as the view type. This allows the Lambda function to see both the previous and updated state of the item.
 
-2. **Create a Lambda Function**
-
-3. **Set up the Lambda Trigger**:
+2. **Set up the Lambda Trigger**:
    - In the Lambda function’s configuration, add a trigger.
    - Select DynamoDB as the source and choose the table you enabled the stream on.
    - Ensure the event source is enabled.
@@ -216,4 +214,14 @@ Once this rule is created, it will automatically trigger our AWS Lambda function
 - **Event Source**: Configure an event source that triggers the Lambda function. This could be based on a schedule or another AWS service event.
 - **Event Pattern**: If triggering based on a specific event, define an event pattern that includes the `user_review` data. For example, if the review is part of an S3 event or a custom application event, ensure the `user_review` field is included in the event pattern.
 - **Test Event**: For testing, you can create a sample event in the AWS Lambda console with a JSON structure like `{'user_review': 'Sample review text'}`.
+
+## [10: Archive Old Files from S3 to Glacier Using AWS Lambda and Boto3](assignment_10.py)
+
+### Objective
+Automate the archival of files older than 6 months from an S3 bucket to Amazon Glacier for cost-effective long-term storage.
+
+### Setup and Deployment
+
+1. **Trigger**:
+   - Configure the Lambda function to run periodically (e.g., daily or weekly) using AWS EventBridge (formerly CloudWatch Events).
 
